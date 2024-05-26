@@ -15,7 +15,7 @@ public class FieldValidator {
     
     public static void showMessage(String fieldName) {
         String title = "Error Found!";
-        String errorMessage = "The " + fieldName + " field is required";
+        String errorMessage = "The " + fieldName + " field is required.";
         
         ErrorDialog error = new ErrorDialog(null, title, errorMessage);
         error.setVisible(true);

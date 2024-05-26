@@ -1,5 +1,6 @@
 package com.jomlx.user;
 
+import com.jomlx.components.ErrorDialog;
 import com.jomlx.memo.Main;
 import com.sanctionco.jmail.JMail;
 import java.util.regex.Pattern;
@@ -33,10 +34,10 @@ public class UserValidator {
     
     public static boolean verifyRegister(String email, String password, String confirmPassword) {
         if (!isValidEmail(email)) {
-            JOptionPane.showMessageDialog(null,
-            "The " + email + " address you entered is not valid. Please enter a valid email address.",
-            "Required Field",
-            JOptionPane.WARNING_MESSAGE);
+            String title = "Error Found!";
+            String errorMessage = "Please enter a valid email address.";
+            ErrorDialog error = new ErrorDialog(null, title, errorMessage);
+            error.setVisible(true);
             return false;
         }
         if (!isValidPassword(password)) {
@@ -47,10 +48,11 @@ public class UserValidator {
             return false;
         }
         if (!password.equals(confirmPassword)) {
-            JOptionPane.showMessageDialog(null,
-            "Confirm Password must match the Password field.",
-            "Password Mismatch",
-            JOptionPane.WARNING_MESSAGE);
+            String title = "Error Found!";
+            String errorMessage = "Password mismatch.";
+            
+            ErrorDialog error = new ErrorDialog(null, title, errorMessage);
+            error.setVisible(true);
             return false;
         }
         return true;

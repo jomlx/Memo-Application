@@ -31,6 +31,9 @@ public class Main extends javax.swing.JFrame {
         login = new Login();
         register = new Register();
         
+        login.setVisible(true);
+        register.setVisible(false);
+        
         TimingTarget target = new TimingTargetAdapter() {
             @Override
             public void timingEvent(float fraction) {
@@ -49,11 +52,24 @@ public class Main extends javax.swing.JFrame {
                     fractionCover = 1f - fraction;
                     fractionLogin = fraction;
                     fractionRegister = fraction;
-                  
+                    
+                    // For PanelCover transition
+                    if (fraction >= 0.5f) {
+                        cover.registerRight(fractionCover * 100);
+                    } else {
+                        cover.loginRight(fractionLogin * 100 );
+                    }
                 } else {
                     fractionCover = fraction;
                     fractionLogin = 1f - fraction;
                     fractionRegister = 1f - fraction;
+                    
+                    // For PanelCover transition
+                    if (fraction <= 0.5f) {
+                        cover.registerLeft(fraction * 100);
+                    } else {
+                        cover.loginLeft((1f - fraction) * 100 );
+                    }
                     
                 }
                 

@@ -24,12 +24,12 @@ public class MailService {
         if (isEmailValid) {
             String msgTemp = "<html>"
                     + "<body>"
-                    + "<h2>Hello, </h2>"
+                    + "<p>Hello, </p>"
                     + "<p>Thank you for signing up for our service! To complete your registration, please use the following one-time password (OTP):</p>"
-                    + "<p>" + authCode + "</p>"
+                    + "<h2>" + authCode + "</h2>"
                     + "<p>If you did not sign up for our service, please ignore this email.</p>"
                     + "<p>Thank you!</p>"
-                    + "<p>Memo company</p>"
+                    + "<br>The Memo account team"
                     + "</body>"
                     + "</html>";
             

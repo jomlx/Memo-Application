@@ -1,5 +1,6 @@
 package com.jomlx.memo;
 
+import com.jomlx.components.OTPDialog;
 import com.jomlx.service.AuthCode;
 import com.jomlx.service.FieldValidator;
 import com.jomlx.service.Hash;
@@ -11,12 +12,14 @@ import com.jomlx.widgets.TextField;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 
 public class Register extends javax.swing.JPanel {
+    private String authCode = AuthCode.generateOTP();
     private TextField txtUsername;
     private TextField txtEmail;
     private PasswordField txtPassword;
@@ -29,7 +32,7 @@ public class Register extends javax.swing.JPanel {
     }
     
     public void initRegister() {
-        setLayout(new MigLayout("wrap, align center", "[center]", "push[]25[]5[]5[]25[]25[]push"));
+        setLayout(new MigLayout("wrap, align center", "[center]", "push[]25[]5[]5[]1[]30[]push"));
         JLabel lblTitle = new JLabel("Sign Up");
         lblTitle.setFont(new Font("Sans Serif", 1, 35));
         lblTitle.setForeground(new Color(250, 250, 250));
@@ -56,6 +59,27 @@ public class Register extends javax.swing.JPanel {
         txtPassword.setForeground(new Color(255, 255, 255));
         add(txtPassword, "width 72%, height 9%");
         
+        JCheckBox showPassword = new JCheckBox("Show password");
+        showPassword.setFont(new Font("Sans Serif", 0, 11));
+        showPassword.setForeground(new Color(26,111,255));
+        showPassword.setBackground(new Color(54,57,62));
+        //showPassword.setFocusPainted(false);
+        showPassword.setOpaque(false);
+        //showPassword.setBorderPainted(false);
+        showPassword.setContentAreaFilled(false);
+        showPassword.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (showPassword.isSelected()) {
+                    txtPassword.setEchoChar((char) 0); // Show password
+                    txtCPassword.setEchoChar((char) 0);
+                } else {
+                    txtPassword.setEchoChar('•'); // Hide password
+                    txtCPassword.setEchoChar('•');
+                }
+            }
+        });
+        add(showPassword, "align left");
+        
         txtCPassword = new PasswordField();
         txtCPassword.setHint("CONFIRM PASSWORD");
         txtCPassword.setFont(new Font("Sans Serif", 1, 11));
@@ -80,15 +104,23 @@ public class Register extends javax.swing.JPanel {
                     
                     if (verify(email, password, password2)) {
                         MailService mail = new MailService(); // Email Sender
-                        String authCode = AuthCode.generateOTP();
                         mail.sendMail(txtEmail.getText(), authCode);
                         txtUsername.setText("");
                         txtEmail.setText("");
                         txtPassword.setText("");
                         txtCPassword.setText("");
+                        
+                        OTPDialog OTPFrame = new OTPDialog(null, "Authentication");
+                        OTPFrame.setVisible(true);
+                        String emailCode = OTPFrame.getCode();
+                        if (authCode.equals(emailCode)) {
+                            
+                        }
                     } else {
                         System.out.println("ERROR! occured during verification");
                     }
+                    
+                   
                 }
             }
             
@@ -106,22 +138,26 @@ public class Register extends javax.swing.JPanel {
     // For field requirement
     public static boolean fieldRequired(JTextField username, JTextField email, JPasswordField password, JPasswordField confirmPassword) {
         if (FieldValidator.isFieldEmpty(username)) {
-            FieldValidator.showMessage("Username");
+            FieldValidator.showMessage("username");
             return false;
         }
         if (FieldValidator.isFieldEmpty(email)) {
-            FieldValidator.showMessage("Email");
+            FieldValidator.showMessage("email");
             return false;
         }
         if (FieldValidator.isFieldEmpty(password)) {
-            FieldValidator.showMessage("Password");
+            FieldValidator.showMessage("password");
             return false;
         }
         if (FieldValidator.isFieldEmpty(confirmPassword)) {
-            FieldValidator.showMessage("Confirm Password");
+            FieldValidator.showMessage("confirm password");
             return false;
         }
         return true;
+    }
+    
+    public String getAuthCode() {
+        return authCode;
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

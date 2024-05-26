@@ -27,7 +27,7 @@ public class ErrorDialog extends JDialog {
     
     public void showMessage(String errorMessage) {
         JPanel panel = new JPanel();
-        layout = new MigLayout("wrap, align center", "[center]", "push[]push");
+        layout = new MigLayout("wrap, align center", "[grow, center]", "push[]push");
         panel.setLayout(layout);
         panel.setBackground(new Color(40, 43, 48));
         
