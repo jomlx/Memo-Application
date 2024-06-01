@@ -1,15 +1,22 @@
 package com.jomlx.memo;
 
 import com.jomlx.components.PanelCover;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 
 public class Main extends javax.swing.JFrame {
+    
+    private static Main frame;
     private MigLayout layout;
     private PanelCover cover;
     private Login login;
@@ -21,6 +28,8 @@ public class Main extends javax.swing.JFrame {
     private final DecimalFormat df = new DecimalFormat("##0.###");
     
     public Main() {
+        frame = this;
+        setTitle("Memo");
         initComponents();
         init();
     }
@@ -115,6 +124,26 @@ public class Main extends javax.swing.JFrame {
         });        
     }
     
+    public void showGlassPane(boolean show) {
+        setGlassPane(new JComponent(){
+            protected void paintComponent(Graphics g) {
+                g.setColor(new Color(0, 0, 0, 150));
+                g.fillRect(0, 0, getWidth(), getHeight());
+            }
+        });
+        
+        Container glassPane = (Container)getGlassPane();
+        glassPane.setVisible(show);
+    }
+    
+    public static Main getMainFrame() {
+        return frame;
+    }
+
+    public static void setMainFrame(Main mainFrame) {
+        frame = mainFrame;
+    }
+     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

@@ -1,5 +1,6 @@
 package com.jomlx.memo;
 
+import com.jomlx.components.LoadingScreen;
 import com.jomlx.components.OTPDialog;
 import com.jomlx.service.AuthCode;
 import com.jomlx.service.FieldValidator;
@@ -32,7 +33,7 @@ public class Register extends javax.swing.JPanel {
     }
     
     public void initRegister() {
-        setLayout(new MigLayout("wrap, align center", "[center]", "push[]25[]5[]5[]1[]30[]push"));
+        setLayout(new MigLayout("wrap, align center", "[center]", "push[]25[]5[]5[]1[]15[]25[]push"));
         JLabel lblTitle = new JLabel("Sign Up");
         lblTitle.setFont(new Font("Sans Serif", 1, 35));
         lblTitle.setForeground(new Color(250, 250, 250));
@@ -61,19 +62,19 @@ public class Register extends javax.swing.JPanel {
         
         JCheckBox showPassword = new JCheckBox("Show password");
         showPassword.setFont(new Font("Sans Serif", 0, 11));
-        showPassword.setForeground(new Color(26,111,255));
-        showPassword.setBackground(new Color(54,57,62));
-        //showPassword.setFocusPainted(false);
+        showPassword.setForeground(new Color(85,136,255));
+        showPassword.setFocusPainted(false);
         showPassword.setOpaque(false);
-        //showPassword.setBorderPainted(false);
-        showPassword.setContentAreaFilled(false);
+        showPassword.setBorderPainted(false);
         showPassword.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (showPassword.isSelected()) {
-                    txtPassword.setEchoChar((char) 0); // Show password
+                    // Show password
+                    txtPassword.setEchoChar((char) 0);
                     txtCPassword.setEchoChar((char) 0);
                 } else {
-                    txtPassword.setEchoChar('•'); // Hide password
+                    // Hide password
+                    txtPassword.setEchoChar('•');
                     txtCPassword.setEchoChar('•');
                 }
             }
@@ -88,9 +89,9 @@ public class Register extends javax.swing.JPanel {
         add(txtCPassword, "width 72%, height 9%");
         
         btnRegister = new MyButton("Register");
-        btnRegister.setFont(new Font("gg Sans", 1, 11));
-        btnRegister.setBackground(new Color(123,100,241));
-        btnRegister.setForeground(new Color(255, 255, 255));
+        btnRegister.setBackground(new Color(96,69,240));
+        btnRegister.setDefaultColor(new Color(96,69,240));
+        btnRegister.setLighterColor(new Color(123,100,241));
         btnRegister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -114,7 +115,12 @@ public class Register extends javax.swing.JPanel {
                         OTPFrame.setVisible(true);
                         String emailCode = OTPFrame.getCode();
                         if (authCode.equals(emailCode)) {
+                            Main frame = Main.getMainFrame();
+                            frame.setVisible(false);
+                            new LoadingScreen().setVisible(true);
+                            frame.dispose();
                             
+                            System.out.println("Matchy matchy");
                         }
                     } else {
                         System.out.println("ERROR! occured during verification");

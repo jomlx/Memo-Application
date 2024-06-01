@@ -46,9 +46,9 @@ public class PanelCover extends javax.swing.JPanel {
         add(lblDescription);
         
         btnAnimate = new MyButton("Register");
-        btnAnimate.setFont(new Font("Sans Serif", 1, 12));
         btnAnimate.setBackground(new Color(96,69,240));
-        btnAnimate.setForeground(new Color(255, 255, 255));
+        btnAnimate.setDefaultColor(new Color(96,69,240));
+        btnAnimate.setLighterColor(new Color(123,100,241));
         btnAnimate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 event.actionPerformed(ae);
@@ -61,7 +61,7 @@ public class PanelCover extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(51, 51, 51));
+        setBackground(new java.awt.Color(30, 33, 36));
         setPreferredSize(new java.awt.Dimension(600, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

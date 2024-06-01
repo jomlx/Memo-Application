@@ -1,5 +1,6 @@
 package com.jomlx.components;
 
+import com.jomlx.memo.Main;
 import com.jomlx.memo.Register;
 import com.jomlx.widgets.MyButton;
 import com.jomlx.widgets.TextField;
@@ -33,12 +34,12 @@ public class OTPDialog extends JDialog {
 
     public void init() {
         JPanel panel = new JPanel();
-        layout = new MigLayout("wrap 1, align center, insets 20", "[center]", "push[]10[]10[]10[]10[]push");
+        layout = new MigLayout("wrap 1, align center, insets 30", "[center]", "push[]10[]10[]10[]10[]push");
         panel.setLayout(layout);
         panel.setBackground(new Color(40, 43, 48));
 
         ImageIcon icon = new ImageIcon(getClass().getResource("/com/jomlx/icon/auth-code.png"));
-        Image resizedIcon = icon.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        Image resizedIcon = icon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         JLabel lblIcon = new JLabel(new ImageIcon(resizedIcon));
         panel.add(lblIcon, "align center");
 
@@ -68,12 +69,6 @@ public class OTPDialog extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 setCode(txtAuthCode.getText());
                 dispose();
-                System.out.println("SUCCESSFULLY MATCH!");
-                Register register = new Register();
-
-                if (code.equals(register.getAuthCode())) {
-                    System.out.println("SUCCESSFULLY MATCH");
-                }
             }
         });
         panel.add(btnContinue, "align center");

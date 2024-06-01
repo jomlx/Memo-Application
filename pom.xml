@@ -26,12 +26,18 @@
             <artifactId>simple-java-mail</artifactId>
             <version>8.10.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>RELEASE210</version>
+        </dependency>
     </dependencies>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>
+        <exec.mainClass>com.jomlx.components.LoadingScreen</exec.mainClass>
     </properties>
     
     <build>
@@ -40,9 +46,10 @@
                 <directory>src/main/java</directory>
                 <includes>
                     <include>com/jomlx/icon/memo-log.png</include>
-                    <include>com/jomlx/icon/logo.png</include>
+                    <include>com/jomlx/icon/close-window.png</include>
                     <include>com/jomlx/icon/auth-code.png</include>
                     <include>com/jomlx/icon/warning.png</include>
+                    <include>com/jomlx/icon/circle.png</include>
                 </includes>
             </resource>
         </resources>

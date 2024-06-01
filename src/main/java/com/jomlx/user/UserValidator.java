@@ -36,23 +36,29 @@ public class UserValidator {
         if (!isValidEmail(email)) {
             String title = "Error Found!";
             String errorMessage = "Please enter a valid email address.";
-            ErrorDialog error = new ErrorDialog(null, title, errorMessage);
+            
+            Main frame = Main.getMainFrame();             
+            ErrorDialog error = new ErrorDialog(frame, title, errorMessage);
             error.setVisible(true);
             return false;
         }
         if (!isValidPassword(password)) {
-            JOptionPane.showMessageDialog(null,
-            "The " + password + " you entered is not valid. Please enter a valid password.",
-            "Required Field",
-            JOptionPane.WARNING_MESSAGE);
+            String title = "Wrong Password!";
+            String errorMessage = "Please check your password.";
+            
+            Main frame = Main.getMainFrame();             
+            ErrorDialog error = new ErrorDialog(frame, title, errorMessage);
+            error.setVisible(true);
             return false;
         }
         if (!password.equals(confirmPassword)) {
             String title = "Error Found!";
             String errorMessage = "Password mismatch.";
             
-            ErrorDialog error = new ErrorDialog(null, title, errorMessage);
+            Main frame = Main.getMainFrame();             
+            ErrorDialog error = new ErrorDialog(frame, title, errorMessage);
             error.setVisible(true);
+            
             return false;
         }
         return true;
