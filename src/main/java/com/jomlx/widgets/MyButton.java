@@ -11,9 +11,24 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 
 public class MyButton extends JButton {
+
+    /**
+     * @return the defaultSize
+     */
+    public int getDefaultSize() {
+        return defaultSize;
+    }
+
+    /**
+     * @param defaultSize the defaultSize to set
+     */
+    public void setDefaultSize(int defaultSize) {
+        this.defaultSize = defaultSize;
+    }
     private final int radius = 0;
     private Color defaultColor;
     private Color lighterColor;
+    private int defaultSize = 1;
     
     public MyButton(String text) {
         super(text);
@@ -22,7 +37,7 @@ public class MyButton extends JButton {
         setForeground(new Color(255, 255, 255));
         defaultColor = getBackground();
         Dimension defaultSize = getPreferredSize();
-        Dimension largerSize = new Dimension(defaultSize.width + 1, defaultSize.height + 1);
+        Dimension largerSize = new Dimension(defaultSize.width + getDefaultSize(), defaultSize.height + getDefaultSize());
         addMouseListener(new MouseAdapter() {
            public void mousePressed(MouseEvent e) {
                 setBackground(lighterColor);

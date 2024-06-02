@@ -1,33 +1,25 @@
 package com.jomlx.components;
 
 import com.jomlx.memo.Home;
-import com.jomlx.widgets.MyProgressBar;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import javax.swing.plaf.basic.BasicProgressBarUI;
-import net.miginfocom.swing.MigLayout;
 
 public final class LoadingScreen extends JFrame {
     private static LoadingScreen loadScreen;
-    private MigLayout layout;
     
     public LoadingScreen() {
         initComponents();
-        customBar();
-        icon();
-        init();
+        customizeBar();
+        logoIcon();
+        splashScreen();
     }
     
-    public void icon() {
+    public void logoIcon() {
         ImageIcon logo = new ImageIcon(getClass().getResource("/com/jomlx/icon/memo-log.png"));
         Image resizedLogo = logo.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon = new ImageIcon(resizedLogo);
@@ -35,7 +27,7 @@ public final class LoadingScreen extends JFrame {
         lblLogo.setIcon(resizedIcon);
         
     }
-    public void customBar() {
+    public void customizeBar() {
         bar.setPreferredSize(new Dimension(150, 5));
         bar.setBackground(new Color(255, 255, 255));
         bar.setForeground(new Color(123, 100, 241));
@@ -47,7 +39,7 @@ public final class LoadingScreen extends JFrame {
             }
         });
     }
-    public void init() {        
+    public void splashScreen() {        
         Home home = new Home();
         home.setVisible(false);
 

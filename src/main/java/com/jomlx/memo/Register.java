@@ -169,7 +169,7 @@ public class Register extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(54, 57, 62));
+        setBackground(new java.awt.Color(47, 49, 54));
         setPreferredSize(new java.awt.Dimension(600, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

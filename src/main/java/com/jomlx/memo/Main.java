@@ -1,6 +1,7 @@
 package com.jomlx.memo;
 
 import com.jomlx.components.PanelCover;
+import com.jomlx.components.TitleBar;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics;
@@ -19,6 +20,7 @@ public class Main extends javax.swing.JFrame {
     private static Main frame;
     private MigLayout layout;
     private PanelCover cover;
+    private TitleBar titleBar;
     private Login login;
     private Register register;
     private final double addSize = 30;
@@ -37,6 +39,7 @@ public class Main extends javax.swing.JFrame {
     public void init() {
         layout = new MigLayout("fill, insets 0");
         cover = new PanelCover();
+        titleBar = new TitleBar();
         login = new Login();
         register = new Register();
         
@@ -111,9 +114,11 @@ public class Main extends javax.swing.JFrame {
         animator.setResolution(0); // for smooth animation
         
         bg.setLayout(layout);
+        bg.add(titleBar, "dock north, h 20!");
         bg.add(cover, "width " + coverSize + "%, pos 0al 0 n 100%");
         bg.add(login, "width " + halfSize + "%, pos 1al 0 n 100%");
         bg.add(register, "width " + halfSize + "%, pos 1al 0 n 100%");
+        
         
         cover.addEvent(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
@@ -151,9 +156,10 @@ public class Main extends javax.swing.JFrame {
         bg = new javax.swing.JLayeredPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
 
-        bg.setBackground(new java.awt.Color(54, 57, 62));
+        bg.setBackground(new java.awt.Color(47, 49, 54));
         bg.setOpaque(true);
         bg.setPreferredSize(new java.awt.Dimension(600, 400));
 

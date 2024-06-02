@@ -37,7 +37,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>
-        <exec.mainClass>com.jomlx.components.LoadingScreen</exec.mainClass>
+        <exec.mainClass>com.jomlx.memo.Main</exec.mainClass>
     </properties>
     
     <build>
@@ -49,7 +49,8 @@
                     <include>com/jomlx/icon/close-window.png</include>
                     <include>com/jomlx/icon/auth-code.png</include>
                     <include>com/jomlx/icon/warning.png</include>
-                    <include>com/jomlx/icon/circle.png</include>
+                    <include>com/jomlx/icon/dispose.png</include>
+                    <include>com/jomlx/icon/minimize.png</include>
                 </includes>
             </resource>
         </resources>
