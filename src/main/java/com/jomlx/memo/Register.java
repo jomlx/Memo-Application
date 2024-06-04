@@ -1,7 +1,7 @@
 package com.jomlx.memo;
 
 import com.jomlx.components.LoadingScreen;
-import com.jomlx.components.OTPDialog;
+import com.jomlx.components.OTPVerification;
 import com.jomlx.service.AuthCode;
 import com.jomlx.service.FieldValidator;
 import com.jomlx.service.Hash;
@@ -88,10 +88,10 @@ public class Register extends javax.swing.JPanel {
         txtCPassword.setForeground(new Color(255, 255, 255));
         add(txtCPassword, "width 72%, height 9%");
         
-        btnRegister = new MyButton("Register");
-        btnRegister.setBackground(new Color(96,69,240));
-        btnRegister.setDefaultColor(new Color(96,69,240));
-        btnRegister.setLighterColor(new Color(123,100,241));
+        btnRegister = new MyButton();
+        btnRegister.setText("Register");
+        btnRegister.setDefaultColor(new Color(11, 96, 176));
+        btnRegister.setLighterColor(new Color(14, 122, 224));
         btnRegister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -111,11 +111,14 @@ public class Register extends javax.swing.JPanel {
                         txtPassword.setText("");
                         txtCPassword.setText("");
                         
-                        OTPDialog OTPFrame = new OTPDialog(null, "Authentication");
-                        OTPFrame.setVisible(true);
-                        String emailCode = OTPFrame.getCode();
+                        Main frame = Main.getMainFrame();
+                        OTPVerification OTPVerify = new OTPVerification(frame, true);
+                        OTPVerify.setVisible(true);
+                        
+
+                        String emailCode = OTPVerify.getOTPCode();
+                        System.out.println(emailCode);
                         if (authCode.equals(emailCode)) {
-                            Main frame = Main.getMainFrame();
                             frame.setVisible(false);
                             new LoadingScreen().setVisible(true);
                             frame.dispose();

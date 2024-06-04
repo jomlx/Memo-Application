@@ -63,10 +63,10 @@ public class ErrorDialog extends JDialog {
         panel.add(lblMessage, "cell 0 3 2 1, align center");
 
         // Continue Button
-        MyButton btnContinue = new MyButton("Continue");
-        btnContinue.setBackground(new Color(96, 69, 240));
-        btnContinue.setDefaultColor(new Color(96, 69, 240));
-        btnContinue.setLighterColor(new Color(123, 100, 241));
+        MyButton btnContinue = new MyButton();
+        btnContinue.setText("Continue");
+        btnContinue.setDefaultColor(new Color(11, 96, 176));
+        btnContinue.setLighterColor(new Color(14, 122, 224));
         btnContinue.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

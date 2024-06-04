@@ -45,10 +45,10 @@ public class PanelCover extends javax.swing.JPanel {
         lblDescription.setForeground(new Color(255, 255, 255));
         add(lblDescription);
         
-        btnAnimate = new MyButton("Register");
-        btnAnimate.setBackground(new Color(96,69,240));
-        btnAnimate.setDefaultColor(new Color(96,69,240));
-        btnAnimate.setLighterColor(new Color(123,100,241));
+        btnAnimate = new MyButton();
+        btnAnimate.setText("Register");
+        btnAnimate.setDefaultColor(new Color(11, 96, 176));
+        btnAnimate.setLighterColor(new Color(14, 122, 224));
         btnAnimate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 event.actionPerformed(ae);

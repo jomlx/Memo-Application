@@ -47,10 +47,11 @@
                 <includes>
                     <include>com/jomlx/icon/memo-log.png</include>
                     <include>com/jomlx/icon/close-window.png</include>
-                    <include>com/jomlx/icon/auth-code.png</include>
                     <include>com/jomlx/icon/warning.png</include>
                     <include>com/jomlx/icon/dispose.png</include>
                     <include>com/jomlx/icon/minimize.png</include>
+                    <include>com/jomlx/icon/verification.png</include>
+                    <include>com/jomlx/icon/close-icon.png</include>
                 </includes>
             </resource>
         </resources>

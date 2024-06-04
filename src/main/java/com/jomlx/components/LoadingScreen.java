@@ -71,6 +71,7 @@ public final class LoadingScreen extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(40, 43, 48));
+        setUndecorated(true);
 
         bg.setBackground(new java.awt.Color(40, 43, 48));
         bg.setPreferredSize(new java.awt.Dimension(600, 400));

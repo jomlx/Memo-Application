@@ -37,11 +37,11 @@ public class Login extends javax.swing.JPanel {
         txtPassword.setForeground(new Color(255, 255, 255));
         add(txtPassword, "width 72%, height 9%");
         
-        btnLogin = new MyButton("Login");
+        btnLogin = new MyButton();
+        btnLogin.setText("Login");
         btnLogin.setFont(new Font("gg Sans", 1, 12));
-        btnLogin.setBackground(new Color(96,69,240));
-        btnLogin.setDefaultColor(new Color(96,69,240));
-        btnLogin.setLighterColor(new Color(123,100,241));
+        btnLogin.setDefaultColor(new Color(11, 96, 176));
+        btnLogin.setLighterColor(new Color(14, 122, 224));
         add(btnLogin, "width 70%");
     }
     @SuppressWarnings("unchecked")

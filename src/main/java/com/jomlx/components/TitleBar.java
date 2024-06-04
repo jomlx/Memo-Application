@@ -49,7 +49,7 @@ public class TitleBar extends JPanel {
     }
     
     private MyButton addButton(String path, Color lighterColor) {
-        MyButton button = new MyButton("");
+        MyButton button = new MyButton();
         button.setBackground(new Color(30, 33, 36));
         button.setDefaultColor(new Color(30, 33, 36));
         button.setLighterColor(lighterColor);
