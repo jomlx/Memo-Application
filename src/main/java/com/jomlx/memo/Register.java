@@ -2,6 +2,7 @@ package com.jomlx.memo;
 
 import com.jomlx.components.LoadingScreen;
 import com.jomlx.components.OTPVerification;
+import com.jomlx.database.User;
 import com.jomlx.service.AuthCode;
 import com.jomlx.service.FieldValidator;
 import com.jomlx.service.Hash;
@@ -13,6 +14,7 @@ import com.jomlx.widgets.TextField;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Timestamp;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -95,38 +97,40 @@ public class Register extends javax.swing.JPanel {
         btnRegister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String username = txtUsername.getText();
                 String email = txtEmail.getText();
                 char[] hashedPassword = txtPassword.getPassword();
                 String password = Hash.hashPassword(hashedPassword);
                 char[] confirmPassword = txtCPassword.getPassword();
                 String password2 = Hash.hashPassword(confirmPassword);
+                Timestamp creationDate = new Timestamp(System.currentTimeMillis());               
                 
                 if (fieldRequired(txtUsername, txtEmail, txtPassword, txtCPassword)) {
                     
-                    if (verify(email, password, password2)) {
-                        MailService mail = new MailService(); // Email Sender
-                        mail.sendMail(txtEmail.getText(), authCode);
+                    if (verify(username,email, password, password2)) {                       
+                        MailService mail = new MailService();   // Create object for MailService
+                        mail.sendMail(txtEmail.getText(), authCode);    // Sending OTP code to user's email
                         txtUsername.setText("");
                         txtEmail.setText("");
                         txtPassword.setText("");
                         txtCPassword.setText("");
-                        
+                       
                         Main frame = Main.getMainFrame();
                         OTPVerification OTPVerify = new OTPVerification(frame, true);
-                        OTPVerify.setVisible(true);
-                        
+                        OTPVerify.setVisible(true); // Make the OTPVerification visible to screen
 
                         String emailCode = OTPVerify.getOTPCode();
                         System.out.println(emailCode);
                         if (authCode.equals(emailCode)) {
+                            User.addUser(username, email, password, creationDate);  // Added to database
                             frame.setVisible(false);
                             new LoadingScreen().setVisible(true);
                             frame.dispose();
                             
-                            System.out.println("Matchy matchy");
+                            System.out.println("OTP match perfectly!");
                         }
                     } else {
-                        System.out.println("ERROR! occured during verification");
+                        System.out.println("ERROR! occured during verification.");
                     }
                     
                    
@@ -137,8 +141,8 @@ public class Register extends javax.swing.JPanel {
         add(btnRegister, "width 70%");
     }
     // For verification of account
-    public boolean verify(String email, String password, String confirmPassword) {
-        if (!UserValidator.verifyRegister(email, password, confirmPassword)) {
+    public boolean verify(String username, String email, String password, String confirmPassword) {
+        if (!UserValidator.verifyRegister(username, email, password, confirmPassword)) {
             return false;
         }
         return true;

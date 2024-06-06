@@ -1,9 +1,16 @@
 package com.jomlx.memo;
 
+import com.jomlx.components.LoadingScreen;
+import com.jomlx.database.User;
+import com.jomlx.service.FieldValidator;
+import com.jomlx.service.Hash;
+import com.jomlx.user.UserValidator;
 import com.jomlx.widgets.MyButton;
 import com.jomlx.widgets.PasswordField;
 import com.jomlx.widgets.TextField;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import net.miginfocom.swing.MigLayout;
 
@@ -42,7 +49,39 @@ public class Login extends javax.swing.JPanel {
         btnLogin.setFont(new Font("gg Sans", 1, 12));
         btnLogin.setDefaultColor(new Color(11, 96, 176));
         btnLogin.setLighterColor(new Color(14, 122, 224));
+        btnLogin.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                String email = txtEmail.getText();
+                char[] hashPassword = txtPassword.getPassword();
+                String password = Hash.hashPassword(hashPassword);
+                
+                if (fieldRequired(txtEmail,txtPassword)) {
+                    if (UserValidator.verifyLogin(email, password)) {
+                        Main frame = Main.getMainFrame();
+                        frame.setVisible(false);
+                        new LoadingScreen().setVisible(true);
+                        frame.dispose();
+                        System.out.println("Login Successfully");
+                        
+                        txtEmail.setText("");
+                        txtPassword.setText("");
+                    }
+                }
+            }
+        });
         add(btnLogin, "width 70%");
+    }
+    
+    public static boolean fieldRequired(TextField email, PasswordField password) {
+        if (FieldValidator.isFieldEmpty(email)) {
+            FieldValidator.showMessage("email");
+            return false;
+        }
+        if (FieldValidator.isFieldEmpty(password)) {
+            FieldValidator.showMessage("password");
+            return false;
+        }
+        return true;
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

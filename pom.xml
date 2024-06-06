@@ -31,13 +31,19 @@
             <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE210</version>
         </dependency>
+        <!-- ms access database-->
+        <dependency>
+            <groupId>net.sf.ucanaccess</groupId>
+            <artifactId>ucanaccess</artifactId>
+            <version>5.0.1</version>
+        </dependency>
     </dependencies>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>
-        <exec.mainClass>com.jomlx.memo.Main</exec.mainClass>
+        <exec.mainClass>com.jomlx.memo.Home</exec.mainClass>
     </properties>
     
     <build>
@@ -52,6 +58,7 @@
                     <include>com/jomlx/icon/minimize.png</include>
                     <include>com/jomlx/icon/verification.png</include>
                     <include>com/jomlx/icon/close-icon.png</include>
+                    <include>com/jomlx/icon/sign-out.png</include>
                 </includes>
             </resource>
         </resources>

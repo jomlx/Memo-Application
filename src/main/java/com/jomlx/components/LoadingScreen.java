@@ -44,7 +44,7 @@ public final class LoadingScreen extends JFrame {
         home.setVisible(false);
 
         // Using a Timer for progress bar updates
-        Timer timer = new Timer(70, new ActionListener() {
+        Timer timer = new Timer(50, new ActionListener() {
             int i = 0;
             @Override
             public void actionPerformed(ActionEvent e) {

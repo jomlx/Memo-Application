@@ -1,10 +1,10 @@
 package com.jomlx.user;
 
 import com.jomlx.components.ErrorDialog;
+import com.jomlx.database.User;
 import com.jomlx.memo.Main;
 import com.sanctionco.jmail.JMail;
 import java.util.regex.Pattern;
-import javax.swing.JOptionPane;
 
 public class UserValidator {
     private static final String USERNAME_PATTERN = "^[a-zA-Z0-9_]{3,20}$";
@@ -13,6 +13,12 @@ public class UserValidator {
     public UserValidator() {  } // default constructor
     
     public static boolean isValidUsername(String username) {
+        if (!User.selectUserByUsername(username)) {
+            return false;
+        }
+        return true;
+    }
+    public static boolean isValidUserName(String username) {
         return Pattern.compile(USERNAME_PATTERN).matcher(username).matches();
     }
     
@@ -25,26 +31,19 @@ public class UserValidator {
         return Pattern.compile(PASSWORD_PATTERN).matcher(password).matches();
     }
     
-    public static boolean confirmation(String password, String confirmPassword) {
-        if (!password.equals(confirmPassword)) {
-            return false;
-        }
-        return true;
-    }
-    
-    public static boolean verifyRegister(String email, String password, String confirmPassword) {
-        if (!isValidEmail(email)) {
+    public static boolean verifyRegister(String username, String email, String password, String confirmPassword) {
+        if (User.selectUserByUsername(username)) {
             String title = "Error Found!";
-            String errorMessage = "Please enter a valid email address.";
+            String errorMessage = "Username was already taken..";
             
-            Main frame = Main.getMainFrame();             
+            Main frame = Main.getMainFrame();
             ErrorDialog error = new ErrorDialog(frame, title, errorMessage);
             error.setVisible(true);
             return false;
         }
-        if (!isValidPassword(password)) {
-            String title = "Wrong Password!";
-            String errorMessage = "Please check your password.";
+        if (User.selectUserByEmail(email)) {
+            String title = "Error Found!";
+            String errorMessage = "Email was already used.";
             
             Main frame = Main.getMainFrame();             
             ErrorDialog error = new ErrorDialog(frame, title, errorMessage);
@@ -58,7 +57,30 @@ public class UserValidator {
             Main frame = Main.getMainFrame();             
             ErrorDialog error = new ErrorDialog(frame, title, errorMessage);
             error.setVisible(true);
+            return false;
+        }
+        return true;
+    }
+    
+    public static boolean verifyLogin(String email, String password) {
+        if (!User.selectUserByUsernameAndEmail(email, email)) {
+            String title = "Error Found!";
+            String errorMessage = "invalid email or username.";
             
+            Main frame = Main.getMainFrame();             
+            ErrorDialog error = new ErrorDialog(frame, title, errorMessage);
+            error.setVisible(true);
+            System.out.println(email);
+            return false;
+        }
+        
+        if (!User.selectUserByPassword(password)) {
+            String title = "Error Found!";
+            String errorMessage = "Wrong password.";
+            
+            Main frame = Main.getMainFrame();     
+            ErrorDialog error = new ErrorDialog(frame, title, errorMessage);
+            error.setVisible(true);
             return false;
         }
         return true;
