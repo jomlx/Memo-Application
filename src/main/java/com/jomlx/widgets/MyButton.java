@@ -26,14 +26,13 @@ public final class MyButton extends JButton {
         addMouseListener(new MouseAdapter() {
            @Override
            public void mousePressed(MouseEvent e) {
-                setForeground(lighterColor);
-//                setBackground(lighterColor);
+                setBackground(lighterColor);
                 enlargeButton();
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                setForeground(defaultColor);
+                setBackground(defaultColor);
                 resetSize();
             }
 
