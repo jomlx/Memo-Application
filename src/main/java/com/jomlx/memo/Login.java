@@ -11,6 +11,7 @@ import com.jomlx.widgets.TextField;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import net.miginfocom.swing.MigLayout;
 
@@ -24,7 +25,7 @@ public class Login extends javax.swing.JPanel {
     }
     
     public void initLogin() {
-        setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]5[]25[]push"));
+        setLayout(new MigLayout("wrap, align center", "center", "push[]25[]5[]1[]25[]push"));
         JLabel lblTitle = new JLabel("Login");
         lblTitle.setFont(new Font("Sans Serif", 1, 35));
         lblTitle.setForeground(new Color(250, 250, 250));
@@ -43,6 +44,25 @@ public class Login extends javax.swing.JPanel {
         txtPassword.setBackground(new Color(30,33,36));
         txtPassword.setForeground(new Color(255, 255, 255));
         add(txtPassword, "width 72%, height 9%");
+        
+        JCheckBox showPassword = new JCheckBox("Show password");
+        showPassword.setFont(new Font("Sans Serif", 0, 11));
+        showPassword.setForeground(new Color(85,136,255));
+        showPassword.setFocusPainted(false);
+        showPassword.setOpaque(false);
+        showPassword.setBorderPainted(false);
+        showPassword.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (showPassword.isSelected()) {
+                    // Show password
+                    txtPassword.setEchoChar((char) 0);
+                } else {
+                    // Hide password
+                    txtPassword.setEchoChar('•');
+                }
+            }
+        });
+        add(showPassword, "align left");
         
         btnLogin = new MyButton();
         btnLogin.setText("Login");

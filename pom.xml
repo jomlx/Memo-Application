@@ -31,11 +31,11 @@
             <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE210</version>
         </dependency>
-        <!-- ms access database-->
+        <!-- mysql database-->
         <dependency>
-            <groupId>net.sf.ucanaccess</groupId>
-            <artifactId>ucanaccess</artifactId>
-            <version>5.0.1</version>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.4.0</version>
         </dependency>
     </dependencies>
     
@@ -43,7 +43,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>
-        <exec.mainClass>com.jomlx.memo.Home</exec.mainClass>
+        <exec.mainClass>com.jomlx.memo.Main</exec.mainClass>
     </properties>
     
     <build>
