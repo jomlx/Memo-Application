@@ -141,11 +141,11 @@ public class Main extends javax.swing.JFrame {
         glassPane.setVisible(show);
     }
     
-    public static Main getMainFrame() {
+    public static Main getFrame() {
         return frame;
     }
 
-    public static void setMainFrame(Main mainFrame) {
+    public static void setFrame(Main mainFrame) {
         frame = mainFrame;
     }
      
@@ -217,6 +217,7 @@ public class Main extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Main().setVisible(true);
+                
             }
         });
     }

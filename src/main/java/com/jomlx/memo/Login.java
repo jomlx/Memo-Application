@@ -77,7 +77,7 @@ public class Login extends javax.swing.JPanel {
                 
                 if (fieldRequired(txtEmail,txtPassword)) {
                     if (UserValidator.verifyLogin(email, password)) {
-                        Main frame = Main.getMainFrame();
+                        Main frame = Main.getFrame();
                         frame.setVisible(false);
                         new LoadingScreen().setVisible(true);
                         frame.dispose();

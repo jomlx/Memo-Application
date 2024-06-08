@@ -1,5 +1,6 @@
 package com.jomlx.components;
 
+import com.jomlx.memo.Home;
 import com.jomlx.memo.Main;
 import com.jomlx.widgets.MyButton;
 import javax.swing.*;
@@ -28,14 +29,24 @@ public class TitleBar extends JPanel {
         btnClose.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Main.getMainFrame().dispose();
+                if (Main.getFrame() != null) {
+                    Main.getFrame().dispose();
+                }
+                if (Home.getFrame() != null) {
+                    Home.getFrame().dispose();
+                }
             }
         });
         
         MyButton btnMinimize = addButton(minimize, new Color(74,76,81));
         btnMinimize.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Main.getMainFrame().setState(Frame.ICONIFIED);
+                if (Main.getFrame() != null) {
+                    Main.getFrame().setState(Frame.ICONIFIED);
+                }
+                if (Home.getFrame() != null) {
+                    Home.getFrame().setState(Frame.ICONIFIED);
+                }
             }
         });
         

@@ -36,7 +36,7 @@ public class UserValidator {
             String title = "Error Found!";
             String errorMessage = "Username was already taken..";
             
-            Main frame = Main.getMainFrame();
+            Main frame = Main.getFrame();
             ErrorDialog error = new ErrorDialog(frame, title, errorMessage);
             error.setVisible(true);
             return false;
@@ -45,7 +45,7 @@ public class UserValidator {
             String title = "Error Found!";
             String errorMessage = "Email was already used.";
             
-            Main frame = Main.getMainFrame();             
+            Main frame = Main.getFrame();             
             ErrorDialog error = new ErrorDialog(frame, title, errorMessage);
             error.setVisible(true);
             return false;
@@ -54,7 +54,7 @@ public class UserValidator {
             String title = "Error Found!";
             String errorMessage = "Password mismatch.";
             
-            Main frame = Main.getMainFrame();             
+            Main frame = Main.getFrame();             
             ErrorDialog error = new ErrorDialog(frame, title, errorMessage);
             error.setVisible(true);
             return false;
@@ -67,7 +67,7 @@ public class UserValidator {
             String title = "Error Found!";
             String errorMessage = "invalid email or username.";
             
-            Main frame = Main.getMainFrame();             
+            Main frame = Main.getFrame();             
             ErrorDialog error = new ErrorDialog(frame, title, errorMessage);
             error.setVisible(true);
             System.out.println(email);
@@ -78,7 +78,7 @@ public class UserValidator {
             String title = "Error Found!";
             String errorMessage = "Wrong password.";
             
-            Main frame = Main.getMainFrame();     
+            Main frame = Main.getFrame();     
             ErrorDialog error = new ErrorDialog(frame, title, errorMessage);
             error.setVisible(true);
             return false;

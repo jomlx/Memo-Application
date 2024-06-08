@@ -115,7 +115,7 @@ public class Register extends javax.swing.JPanel {
                         txtPassword.setText("");
                         txtCPassword.setText("");
                        
-                        Main frame = Main.getMainFrame();
+                        Main frame = Main.getFrame();
                         OTPVerification OTPVerify = new OTPVerification(frame, true);
                         OTPVerify.setVisible(true); // Make the OTPVerification visible to screen
 

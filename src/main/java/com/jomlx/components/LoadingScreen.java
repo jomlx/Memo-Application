@@ -53,6 +53,9 @@ public final class LoadingScreen extends JFrame {
                 if (i > 100) {
                     ((Timer) e.getSource()).stop();
                     home.setVisible(true);
+                    home.setState(JFrame.NORMAL);
+                    home.toFront();
+                    home.requestFocus();
                     setVisible(false);
                     dispose();
                 }
